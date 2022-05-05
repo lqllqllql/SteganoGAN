@@ -1,7 +1,7 @@
-# Minimal makefile for Sphinx documentation
-#
+# Minimal makefile for Sphinx documentation#帮助文档
+#Sphinx生成各种格式的文档
 
-# You can set these variables from the command line.
+# You can set these variables from the command line.#可以通过命令行设置这些变量
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = steganogan
