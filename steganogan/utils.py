@@ -1,20 +1,27 @@
 # -*- coding: utf-8 -*-
 
+# https://docs.python.org/3/library/zlib.html
+# zlib模块提供压缩和解压缩数据的函数
 import zlib
+# this module provice access to the mathematical function defined by the C standard.
 from math import exp
 
 import torch
+# https://pypi.org/project/reedsolo/
+# RSCodec模块：一个纯python通用错误和擦除Reed-Solomon编码器
+# ---encode：编码器，对输入的信息使用Reed-Solomon进行编码
 from reedsolo import RSCodec
 from torch.nn.functional import conv2d
 
 rs = RSCodec(250)
 
-
+# 将秘密信息转换为{0,1}中的整数列表
 def text_to_bits(text):
     """Convert text to a list of ints in {0, 1}"""
+    # bytearray_to_bits自行定义的函数
     return bytearray_to_bits(text_to_bytearray(text))
 
-
+# 整数列表转换成信息
 def bits_to_text(bits):
     """Convert a list of ints in {0, 1} to text"""
     return bytearray_to_text(bits_to_bytearray(bits))
@@ -22,27 +29,31 @@ def bits_to_text(bits):
 
 def bytearray_to_bits(x):
     """Convert bytearray to a list of bits"""
-    result = []
+    result = []# 新建一个空的列表
     for i in x:
-        bits = bin(i)[2:]
+        # bin()：返回一个整数int或长整数long int的二进制表示
+        bits = bin(i)[2:] # 取i第三位以后的全部信息，使用自定义形式进行重新编码，对信息进行一定程度的加密
+        # 补齐，让所有位的编码长度一致
         bits = '00000000'[len(bits):] + bits
+        # 写进列表中
         result.extend([int(b) for b in bits])
-
     return result
 
 
 def bits_to_bytearray(bits):
     """Convert a list of bits to a bytearray"""
     ints = []
+    # 为什么是对8除，然后向下取整
     for b in range(len(bits) // 8):
+        # ??
         byte = bits[b * 8:(b + 1) * 8]
         ints.append(int(''.join([str(bit) for bit in byte]), 2))
-
     return bytearray(ints)
 
 
 def text_to_bytearray(text):
     """Compress and add error correction"""
+    # 压缩并添加纠错
     assert isinstance(text, str), "expected a string"
     x = zlib.compress(text.encode("utf-8"))
     x = rs.encode(bytearray(x))
