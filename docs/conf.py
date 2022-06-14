@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# conf.py配置文件
 # steganogan documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  9 13:47:02 2017.
 #
@@ -14,6 +15,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+# 如果扩展（或使用autodoc记录的模块）在另一个目录，在这个文件中将目录添加到sys.path中。
+# 如果目录是相对于文档根目录，使用os.path.abspath来编写绝对目录。
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
