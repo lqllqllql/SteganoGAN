@@ -34,6 +34,7 @@ def main():
         "residual": ResidualEncoder,
         "dense": DenseEncoder,
     }[args.encoder]
+    
     steganogan = SteganoGAN(
         data_depth=args.data_depth,
         encoder=encoder,
@@ -45,6 +46,9 @@ def main():
         log_dir=os.path.join('models', timestamp)
     )
     with open(os.path.join("models", timestamp, "config.json"), "wt") as fout:
+        # json.dumps():将python对象编码成JSON字符串
+        # ---indent=2：if indent是非负整数或者字符串，则JSON数组元素和对象成员将使用该缩进进行打印。
+        #    ---默认值为最紧凑的表示形式。
         fout.write(json.dumps(args.__dict__, indent=2, default=lambda o: str(o)))
 
     steganogan.fit(train, validation, epochs=args.epochs)
