@@ -8,6 +8,7 @@ from torchvision import transforms
 _DEFAULT_MU = [.5, .5, .5]
 _DEFAULT_SIGMA = [.5, .5, .5]
 
+# 转换图像格式
 DEFAULT_TRANSFORM = transforms.Compose([
     transforms.RandomHorizontalFlip(),
     transforms.RandomCrop(360, pad_if_needed=True),
@@ -15,7 +16,7 @@ DEFAULT_TRANSFORM = transforms.Compose([
     transforms.Normalize(_DEFAULT_MU, _DEFAULT_SIGMA),
 ])
 
-
+# 图像折叠
 class ImageFolder(torchvision.datasets.ImageFolder):
     def __init__(self, path, transform, limit=np.inf):
         super().__init__(path, transform=transform)
