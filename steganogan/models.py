@@ -265,13 +265,13 @@ class SteganoGAN(object):
     # 调包哈哈哈
     # import tensorflow as tf
     #def _save_breakpoint(self,checkpath,point):
-        #checkpath='./check'
-        #point=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
+    #checkpath='/content/drive/MyDrive/models/steganoGAN/check'
+    #point=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
     
-    # callbacks=point
+    callbacks=['point']
     
     # 我猜在这里加入断点保存
-    def fit(self, train, validate, epochs=5,callbacks):
+    def fit(self, train, validate, epochs=5, callbacks):
         """Train a new model with the given ImageLoader class."""
 
         if self.critic_optimizer is None:
