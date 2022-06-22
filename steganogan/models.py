@@ -48,6 +48,8 @@ METRIC_FIELDS = [
     'train.generated_score',
 ]
 
+POINT=['point']
+
 # SteganoGAN
 class SteganoGAN(object):
 
@@ -265,10 +267,9 @@ class SteganoGAN(object):
     # 调包哈哈哈
     # import tensorflow as tf
     #def _save_breakpoint(self,checkpath,point):
-    #checkpath='/content/drive/MyDrive/models/steganoGAN/check'
-    #point=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
+    checkpath='/content/drive/MyDrive/models/steganoGAN/check'
+    checkpoint=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
     
-    callbacks=['point']
     
     # 我猜在这里加入断点保存
     def fit(self, train, validate, epochs=5, callbacks):
@@ -319,6 +320,8 @@ class SteganoGAN(object):
                 torch.cuda.empty_cache()
 
             gc.collect()
+            
+            callbacks['point'].append(cheackpoint.item())
 
     def _make_payload(self, width, height, depth, text):
         """
