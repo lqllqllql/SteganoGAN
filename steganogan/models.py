@@ -271,7 +271,7 @@ class SteganoGAN(object):
     
     
     # 我猜在这里加入断点保存
-    def fit(self, train, validate, epochs=5, callbacks):
+    def fit(self, train, validate, callbacks,epochs=5):
         """Train a new model with the given ImageLoader class."""
 
         if self.critic_optimizer is None:
@@ -320,8 +320,8 @@ class SteganoGAN(object):
 
             gc.collect()
             
-            checkpath='/content/drive/MyDrive/models/steganoGAN/check'
-            self.callbacks=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
+            #checkpath='/content/drive/MyDrive/models/steganoGAN/check'
+            #self.callbacks=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
             
             
      
