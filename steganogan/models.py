@@ -321,7 +321,7 @@ class SteganoGAN(object):
             gc.collect()
             
             checkpath='/content/drive/MyDrive/models/steganoGAN/check'
-            callbacks=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
+            self.callbacks=tf.keras.callbacks.ModelCheckpoint('checkpath',save_weights_only=True,save_freq=5)
             
             
      
