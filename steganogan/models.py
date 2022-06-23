@@ -48,7 +48,7 @@ METRIC_FIELDS = [
     'train.generated_score',
 ]
 
-POINT=['point']
+#POINT=['point']
 
 # SteganoGAN
 class SteganoGAN(object):
@@ -321,7 +321,8 @@ class SteganoGAN(object):
 
             gc.collect()
             
-            callbacks['point'].append(cheackpoint.item())
+            callbacks=checkpoint
+     
 
     def _make_payload(self, width, height, depth, text):
         """
